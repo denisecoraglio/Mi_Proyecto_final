@@ -10,7 +10,10 @@
 
     <h1>Lista de alumnos de Coderhouse</h1>
     <ul>
-    {% for curso in lista_alumnos %}     
-            <li> ID: {{alumno.id}}, Nombre: {{alumno.nombre}}, Direccion: {{alumno.direccion}}, Curso: {{alumno.curso} </li>
+    {% for alumno in lista_alumnos %}
+            <li> ID: {{alumno.id}}, Nombre: {{alumno.nombre}}, Provincia: {{alumno.provincia}}, Curso: {{alumno.curso}}, Edad: {{alumno.edad}} </li>
     {% endfor %}
     </ul>
+
+</body>
+</html>

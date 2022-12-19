@@ -8,9 +8,12 @@
 </head>
 <body>
 
-    <h1>Tutores de Coderhouse</h1>
+    <h1>Lista de tutores de Coderhouse</h1>
     <ul>
-    {% for curso in lista_tutores %}     
-            <li> ID: {{tutor.id}}, Nombre: {{tutor.nombre}}, Curso: {{tutor.curso} </li>
+    {% for tutor in lista_tutores %}     
+            <li> ID: {{tutor.id}}, Nombre: {{tutor.nombre}}, Curso: {{tutor.curso}} </li>
     {% endfor %}
     </ul>
+
+</body>
+</html>
