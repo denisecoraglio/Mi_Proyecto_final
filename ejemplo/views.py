@@ -2,8 +2,11 @@ from django.shortcuts import render
 from ejemplo.models import Cursos
 from ejemplo.models import Alumnos
 from ejemplo.models import Tutores
-from ejemplo.forms import Buscar 
+from ejemplo.forms import Buscar, CursosForm, AlumnosForm, TutoresForm
 from django.views import View 
+
+
+
 
 
 def mostrar_cursos(request):
@@ -32,4 +35,67 @@ class BuscarCursos(View):
             lista_cursos = Cursos.objects.filter(nombre__icontains=nombre).all() 
             form = self.form_class(initial=self.initial)
             return render(request, self.template_name, {'form':form, "lista_cursos": lista_cursos})
+        return render(request, self.template_name, {"form": form})
+
+class AltaCursos(View):
+
+    form_class = CursosForm
+    template_name = 'ejemplo/alta_cursos.html'
+    initial = {"nombre":"", "duracion":"", "dedicacion":""}
+
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"se cargo con éxito el curso {form.cleaned_data.get('nombre')}"
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'msg_exito': msg_exito})
+        
+        return render(request, self.template_name, {"form": form})
+
+class AltaAlumnos(View):
+
+    form_class = AlumnosForm
+    template_name = 'ejemplo/alta_alumnos.html'
+    initial = {"nombre":"", "direccion":"", "numero_pasaporte":""}
+
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"se cargo con éxito el alumno {form.cleaned_data.get('nombre')}"
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'msg_exito': msg_exito})
+        
+        return render(request, self.template_name, {"form": form})
+
+class AltaTutores(View):
+
+    form_class = TutoresForm
+    template_name = 'ejemplo/alta_tutores.html'
+    initial = {"nombre":"", "curso":""}
+
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"se cargo con éxito el tutor {form.cleaned_data.get('nombre')}"
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'msg_exito': msg_exito})
+        
         return render(request, self.template_name, {"form": form})

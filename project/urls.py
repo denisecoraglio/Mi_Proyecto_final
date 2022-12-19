@@ -18,7 +18,7 @@ from django.urls import path
 from ejemplo.views import mostrar_cursos
 from ejemplo.views import mostrar_alumnos
 from ejemplo.views import mostrar_tutores
-from ejemplo.views import BuscarCursos
+from ejemplo.views import BuscarCursos, AltaCursos, AltaAlumnos, AltaTutores
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +27,9 @@ urlpatterns = [
     path('alumnos-coder/', mostrar_alumnos),
     path('tutores/', mostrar_tutores),
     path('cursos-datos/buscar', BuscarCursos.as_view()),
+    path('cursos-datos/alta', AltaCursos.as_view()),
+    path('alumnos-coder/alta', AltaAlumnos.as_view()),
+    path('tutores/alta', AltaTutores.as_view()),
+
+
 ]
