@@ -1,0 +1,18 @@
+{% extends 'ejemplo/base.html' %}
+{% block titulo%} 
+Buscar Cursos por nombre 
+{% endblock %}
+{% block contenido %}
+  
+  <form action="/cursos-datos/buscar" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+  </form>
+
+  {% for curso in lista_cursos %}
+      <ul>
+          <li> ID: {{curso.id}}, Nombre: {{curso.nombre}}, Duracion: {{curso.duracion}}, Dedicacion: {{curso.dedicacion}}</li>
+      </ul>
+  {% endfor %}
+{% endblock %}

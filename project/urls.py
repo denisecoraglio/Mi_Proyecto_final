@@ -18,7 +18,7 @@ from django.urls import path
 from ejemplo.views import mostrar_cursos
 from ejemplo.views import mostrar_alumnos
 from ejemplo.views import mostrar_tutores
-
+from ejemplo.views import BuscarCursos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('cursos-datos/', mostrar_cursos),
     path('alumnos-coder/', mostrar_alumnos),
     path('tutores/', mostrar_tutores),
+    path('cursos-datos/buscar', BuscarCursos.as_view()),
 ]
