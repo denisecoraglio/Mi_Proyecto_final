@@ -26,14 +26,17 @@ En la web hay 3 tipos de modelos: Cursos, Alumnos y Tutores:
 9 Agregar las url que se indican a continuacion en la barra de direcciones para poder utilizarlas. 
 
 http://127.0.0.1:8000/cursos-datos/: Muestra los Cursos de data ofrecidos por Coderhouse
-http://127.0.0.1:8000/alumnos-coder/: Muestra los alumons de Coderhouse
-http://127.0.0.1:8000/tutores/Muestra los tutores Coderhouse
+http://127.0.0.1:8000/alumnos-coder/: Muestra los alumnos de Coderhouse
+http://127.0.0.1:8000/tutores/ : Muestra los tutores Coderhouse
 http://127.0.0.1:8000/cursos-datos/buscar: Permite buscar por nombre de curso
 http://127.0.0.1:8000/cursos-datos/alta: Permite dar de alta a un curso
 http://127.0.0.1:8000/alumnos-coder/alta: Permite dar de alta a un alumno
 http://127.0.0.1:8000/tutores/: Permite dar de alta a un tutor
+cursos-datos/actualizar/<int:pk>: Permite actualizar el registro 
+cursos-datos/borrar/<int:pk>Permite borrar el registro 
 
-Se encuentran funcionando todas excepto http://127.0.0.1:8000/cursos-datos/alta que aun no carga correctamente el curso. 
+
+Se encuentran funcionando todas excepto la funcion actualizar que no genera el mensaje de exito como corresponde
 
 
 
