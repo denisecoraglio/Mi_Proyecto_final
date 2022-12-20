@@ -1,9 +1,22 @@
 {% extends 'ejemplo/base.html' %}
-{% block titulo%} Lista de cursos de data de Coderhouse {% endblock %}
-{% block contenido %}
-  {% for curso in lista_cursos %}
-          <li> ID: {{curso.id}}, Nombre: {{curso.nombre}}, Duracion: {{curso.duracion}}, Dedicacion: {{curso.dedicacion}} </li>
-  {% endfor %}
+
+{% block titulo%}
+
+Lista de cursos de Coderhouse
 {% endblock %}
-</body>
-</html>
+{% block contenido %}
+    <a href="/cursos-datos/alta{{ curso.id }}">Nuevo Curso</a>
+    <ul>
+    {% for curso in lista_cursos %}
+      <li> 
+          Id: {{curso.id}}, Nombre: {{curso.nombre}}, Duracion: {{curso.duracion}}, Dedicacion: {{curso.dedicacion}}
+        <!-- Esto agrega un link al form de actulización-->
+          <a href="/cursos-datos/actualizar/{{ curso.id }}">Actualizar</a>
+          <a href="/cursos-datos/borrar/{{ curso.id }}">Borrar</a>
+      </li>
+    {% endfor %}
+  </ul>
+{%endblock %}
+
+
+

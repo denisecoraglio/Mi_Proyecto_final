@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from ejemplo.models import Cursos
 from ejemplo.models import Alumnos
 from ejemplo.models import Tutores
@@ -99,3 +99,40 @@ class AltaTutores(View):
                                                         'msg_exito': msg_exito})
         
         return render(request, self.template_name, {"form": form})
+
+class ActualizarCursos(View):
+  form_class = CursosForm
+  template_name = 'ejemplo/actualizar_cursos.html'
+  initial = {"nombre":"", "duracion":"", "dedicacion":""}
+  
+
+  def get(self, request, pk): 
+      cursos = get_object_or_404(Cursos, pk=pk)
+      form = self.form_class(instance=cursos)
+      return render(request, self.template_name, {'form':form,"lista_cursos": cursos})
+
+ 
+  def post(self, request, pk): 
+      cursos = get_object_or_404(Cursos, pk=pk)
+      form = self.form_class(request.POST ,instance=cursos)
+      if form.is_valid():
+          form.save()
+          msg_exito = f"se actualizó con éxito el curso {form.cleaned_data.get('nombre')}"
+          form = self.form_class(initial=self.initial)
+          return render(request, self.template_name, {'form':form, 
+                                                      'lista_cursos': cursos,
+                                                      'msg_exito': msg_exito})
+      
+      return render(request, self.template_name, {"form": form})
+
+class BorrarCursos(View):
+    template_name = "ejemplo/cursos.html"
+ 
+  
+    def get(self, request, pk): 
+      cursos = get_object_or_404(Cursos, pk=pk)
+      cursos.delete()
+      cursos = Cursos.objects.all()
+
+      
+      return render(request, self.template_name, {'lista_cursos': cursos})

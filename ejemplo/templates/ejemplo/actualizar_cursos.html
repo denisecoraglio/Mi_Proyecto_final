@@ -1,11 +1,12 @@
 {% extends 'ejemplo/base.html' %}
-{% block titulo%} Alta de nuevos cursos {% endblock %}
+{% block titulo%} Modificar un curso {% endblock %}
 {% block contenido %}
-  
-<form action="/cursos-datos/alta" method="post">
+
+
+<form action="/cursos-datos/actualizar/{{ curso.id }}" method="post"> 
     {% csrf_token %}
-    {{ form.as_p}}
-    <input type="submit" value="Guardar">
+    {{ form.as_p }}
+    <input type="submit" value="Actualizar">
 </form>
 
 <h2 style="color:green">{{msg_exito}}</h2>

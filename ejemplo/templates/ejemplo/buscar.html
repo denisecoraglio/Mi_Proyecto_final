@@ -7,7 +7,7 @@ Buscar cursos por nombre
   <form action="/cursos-datos/buscar" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="Buscar">
   </form>
 
   {% for curso in lista_cursos %}
