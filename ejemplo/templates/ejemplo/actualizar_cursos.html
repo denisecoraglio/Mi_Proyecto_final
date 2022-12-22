@@ -2,8 +2,8 @@
 {% block titulo%} Modificar un curso {% endblock %}
 {% block contenido %}
 
-
-<form action="/cursos-datos/actualizar/{{ curso.id }}" method="post"> 
+<!-- Prestar aatención a la variable familiar.id -->
+<form action="cursos/actualizar/{{ curso.id }}" method="post"> 
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Actualizar">
@@ -11,6 +11,5 @@
 
 <h2 style="color:green">{{msg_exito}}</h2>
 
-<a href="/cursos-datos/">Volver a la lista de cursos</a>
 
 {% endblock %}

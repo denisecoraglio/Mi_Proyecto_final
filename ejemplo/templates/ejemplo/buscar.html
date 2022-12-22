@@ -4,7 +4,7 @@ Buscar cursos por nombre
 {% endblock %}
 {% block contenido %}
   
-  <form action="/cursos-datos/buscar" method="post">
+  <form action="/cursos/buscar" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Buscar">

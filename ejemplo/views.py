@@ -101,29 +101,30 @@ class AltaTutores(View):
         return render(request, self.template_name, {"form": form})
 
 class ActualizarCursos(View):
-  form_class = CursosForm
-  template_name = 'ejemplo/actualizar_cursos.html'
-  initial = {"nombre":"", "duracion":"", "dedicacion":""}
+    form_class = CursosForm
+    template_name = "ejemplo/actualizar_cursos.html"
+    initial = {"nombre":"", "duracion":"", "dedicacion":""}
   
+  # prestar atención ahora el method get recibe un parametro pk == primaryKey == identificador único
+    def get(self, request, pk): 
+        cursos = get_object_or_404(Cursos, pk=pk)
+        form = self.form_class(instance=cursos)
+        return render(request, self.template_name, {"form":form,"cursos": cursos})
 
-  def get(self, request, pk): 
-      cursos = get_object_or_404(Cursos, pk=pk)
-      form = self.form_class(instance=cursos)
-      return render(request, self.template_name, {'form':form,"lista_cursos": cursos})
-
- 
-  def post(self, request, pk): 
-      cursos = get_object_or_404(Cursos, pk=pk)
-      form = self.form_class(request.POST ,instance=cursos)
-      if form.is_valid():
-          form.save()
-          msg_exito = f"se actualizó con éxito el curso {form.cleaned_data.get('nombre')}"
-          form = self.form_class(initial=self.initial)
-          return render(request, self.template_name, {'form':form, 
-                                                      'lista_cursos': cursos,
-                                                      'msg_exito': msg_exito})
+  # prestar atención ahora el method post recibe un parametro pk == primaryKey == identificador único
+    def post(self, request, pk): 
+        cursos = get_object_or_404(Cursos, pk=pk)
+        form = self.form_class(request.POST ,instance=cursos)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"se actualizó con éxito el curso {form.cleaned_data.get('nombre')}"
+            form = self.form_class(initial=self.initial) # borra formulario
+            return render(request, self.template_name, {"form":form, 
+                                                      "cursos": cursos,
+                                                      "msg_exito": msg_exito})
       
-      return render(request, self.template_name, {"form": form})
+        return render(request, self.template_name, {"form": form})
+
 
 class BorrarCursos(View):
     template_name = "ejemplo/cursos.html"
@@ -133,6 +134,4 @@ class BorrarCursos(View):
       cursos = get_object_or_404(Cursos, pk=pk)
       cursos.delete()
       cursos = Cursos.objects.all()
-
-      
       return render(request, self.template_name, {'lista_cursos': cursos})

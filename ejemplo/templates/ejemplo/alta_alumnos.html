@@ -2,7 +2,7 @@
 {% block titulo%} Alta de nuevo alumno {% endblock %}
 {% block contenido %}
   
-  <form action="/alumnos-coder/alta" method="post">
+  <form action="/alumnos/alta" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Guardar">

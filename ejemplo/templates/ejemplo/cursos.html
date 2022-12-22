@@ -5,17 +5,18 @@
 Lista de cursos de Coderhouse
 {% endblock %}
 {% block contenido %}
-    <a href="/cursos-datos/alta{{ curso.id }}">Nuevo Curso</a>
+          
+    <a href="/cursos/alta">Nuevo Curso</a>
     <ul>
     {% for curso in lista_cursos %}
       <li> 
           Id: {{curso.id}}, Nombre: {{curso.nombre}}, Duracion: {{curso.duracion}}, Dedicacion: {{curso.dedicacion}}
         <!-- Esto agrega un link al form de actulización-->
-          <a href="/cursos-datos/actualizar/{{ curso.id }}">Actualizar</a>
-          <a href="/cursos-datos/borrar/{{ curso.id }}">Borrar</a>
+          <a href="/cursos/actualizar/{{ curso.id }}">Actualizar</a>
+          <a href="/cursos/borrar/{{ curso.id }}">Borrar</a>
       </li>
     {% endfor %}
-  </ul>
+    </ul>
 {%endblock %}
 
 

@@ -15,23 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ejemplo.views import mostrar_cursos
-from ejemplo.views import mostrar_alumnos
-from ejemplo.views import mostrar_tutores
+from ejemplo.views import mostrar_cursos, mostrar_alumnos, mostrar_tutores
 from ejemplo.views import BuscarCursos, AltaCursos, AltaAlumnos, AltaTutores, ActualizarCursos, BorrarCursos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-   
-    path('cursos-datos/', mostrar_cursos),
-    path('alumnos-coder/', mostrar_alumnos),
+    path('cursos/', mostrar_cursos),
+    path('cursos/buscar', BuscarCursos.as_view()),
+    path('cursos/alta', AltaCursos.as_view()),
+    path('cursos/actualizar/<int:pk>', ActualizarCursos.as_view()),
+    path('cursos/borrar/<int:pk>', BorrarCursos.as_view()),
+    path('alumnos/', mostrar_alumnos),
+    path('alumnos/alta', AltaAlumnos.as_view()),
     path('tutores/', mostrar_tutores),
-    path('cursos-datos/buscar', BuscarCursos.as_view()),
-    path('cursos-datos/alta', AltaCursos.as_view()),
-    path('alumnos-coder/alta', AltaAlumnos.as_view()),
-    path('tutores/alta', AltaTutores.as_view()),
-    path('cursos-datos/actualizar/<int:pk>', ActualizarCursos.as_view()),
-    path('cursos-datos/borrar/<int:pk>', BorrarCursos.as_view()),
-
+    path('tutores/alta', AltaTutores.as_view()),  
 
 ]

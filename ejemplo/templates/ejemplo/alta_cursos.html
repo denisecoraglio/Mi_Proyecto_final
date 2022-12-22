@@ -2,7 +2,7 @@
 {% block titulo%} Alta de nuevos cursos {% endblock %}
 {% block contenido %}
   
-<form action="/cursos-datos/alta" method="post">
+<form action="/cursos/alta" method="post">
     {% csrf_token %}
     {{ form.as_p}}
     <input type="submit" value="Guardar">
@@ -10,6 +10,6 @@
 
 <h2 style="color:green">{{msg_exito}}</h2>
 
-<a href="/cursos-datos/">Volver a la lista de cursos</a>
+<a href="/cursos/">Volver a la lista de cursos</a>
 
 {% endblock %}
