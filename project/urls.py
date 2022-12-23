@@ -16,18 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ejemplo.views import mostrar_cursos, mostrar_alumnos, mostrar_tutores
-from ejemplo.views import BuscarCursos, AltaCursos, AltaAlumnos, AltaTutores, ActualizarCursos, BorrarCursos
+from ejemplo.views import BuscarCurso, AltaCurso, AltaAlumnos, AltaTutores, ActualizarCurso, BorrarCurso, ActualizarAlumno, BorrarAlumno, ActualizarTutor, BorrarTutor
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cursos/', mostrar_cursos),
-    path('cursos/buscar', BuscarCursos.as_view()),
-    path('cursos/alta', AltaCursos.as_view()),
-    path('cursos/actualizar/<int:pk>', ActualizarCursos.as_view()),
-    path('cursos/borrar/<int:pk>', BorrarCursos.as_view()),
+    path('cursos/buscar', BuscarCurso.as_view()),
+    path('cursos/alta', AltaCurso.as_view()),
+    path('cursos/actualizar/<int:pk>', ActualizarCurso.as_view()),
+    path('cursos/borrar/<int:pk>', BorrarCurso.as_view()),
     path('alumnos/', mostrar_alumnos),
     path('alumnos/alta', AltaAlumnos.as_view()),
+    path('alumnos/actualizar/<int:pk>', ActualizarAlumno.as_view()),
+    path('alumnos/borrar/<int:pk>', BorrarAlumno.as_view()),
     path('tutores/', mostrar_tutores),
     path('tutores/alta', AltaTutores.as_view()),  
+    path('tutores/actualizar/<int:pk>', ActualizarTutor.as_view()),
+    path('tutores/borrar/<int:pk>', BorrarTutor.as_view()),
 
 ]

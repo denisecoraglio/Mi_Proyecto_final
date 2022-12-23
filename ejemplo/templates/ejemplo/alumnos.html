@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'ejemplo/base.html' %}
 
-    <h1>Lista de alumnos de Coderhouse</h1>
+{% block titulo%}
+
+Lista de alumnos de Coderhouse
+{% endblock %}
+{% block contenido %}>
+
+    <a href="/alumnos/alta">Nuevo alumno</a>
     <ul>
     {% for alumno in lista_alumnos %}
-            <li> ID: {{alumno.id}}, Nombre: {{alumno.nombre}}, Provincia: {{alumno.provincia}}, Curso: {{alumno.curso}}, Edad: {{alumno.edad}} </li>
+      <li> 
+          Id: {{alumno.id}}, Nombre: {{alumno.nombre}}, Edad: {{alumno.edad}}, Provincia: {{alumno.provincia}}, Curso: {{alumno.curso}}
+        <!-- Esto agrega un link al form de actulización-->
+          <a href="/alumnos/actualizar/{{ alumno.id }}">Actualizar</a>
+          <a href="/alumnos/borrar/{{ alumno.id }}">Borrar</a>
+      </li>
     {% endfor %}
     </ul>
-
-</body>
-</html>
+{%endblock %}

@@ -1,21 +1,21 @@
 from django import forms
-from ejemplo.models import Cursos, Alumnos, Tutores
+from ejemplo.models import Curso, Alumno, Tutor
 
 
 class Buscar(forms.Form):
     nombre = forms.CharField(max_length=10, widget= forms.TextInput(attrs= {"placeholder": "Busque un curso..."}))
 
-class CursosForm(forms.ModelForm):
+class CursoForm(forms.ModelForm):
   class Meta:
-    model = Cursos
+    model = Curso
     fields = ['nombre', 'duracion', 'dedicacion']
 
-class AlumnosForm(forms.ModelForm):
+class AlumnoForm(forms.ModelForm):
   class Meta:
-    model = Alumnos
+    model = Alumno
     fields = ['nombre', 'edad', 'provincia', 'curso' ]
 
-class TutoresForm(forms.ModelForm):
+class TutorForm(forms.ModelForm):
   class Meta:
-    model = Tutores
+    model = Tutor
     fields = ['nombre', 'curso' ]

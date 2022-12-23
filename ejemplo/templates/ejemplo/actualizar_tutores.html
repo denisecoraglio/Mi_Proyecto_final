@@ -1,0 +1,16 @@
+{% extends 'ejemplo/base.html' %}
+{% block titulo%} Modificar un tutor {% endblock %}
+{% block contenido %}
+
+
+<form action="/tutores/actualizar/{{ tutor.id }}" method="post"> 
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Actualizar">
+</form>
+
+<h2 style="color:green">{{msg_exito}}</h2>
+
+<a href="/tutores/">Volver a la lista de tutores</a>
+
+{% endblock %}

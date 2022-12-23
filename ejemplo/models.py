@@ -1,6 +1,6 @@
 from django.db import models
 
-class Cursos(models.Model):
+class Curso(models.Model):
     nombre = models.CharField(max_length=100)
     duracion = models.CharField(max_length=200)
     dedicacion = models.CharField(max_length=100)
@@ -8,7 +8,7 @@ class Cursos(models.Model):
     def __str__(self):
       return f"{self.nombre}, {self.duracion}, {self.id}, {self.dedicacion}"
 
-class Alumnos(models.Model):
+class Alumno(models.Model):
     nombre = models.CharField(max_length=100)
     provincia = models.CharField(max_length=200)
     edad = models.IntegerField()
@@ -17,7 +17,7 @@ class Alumnos(models.Model):
     def __str__(self):
       return f"{self.nombre}, {self.provincia}, {self.edad}, {self.curso}, {self.id}"
 
-class Tutores(models.Model):
+class Tutor(models.Model):
     nombre = models.CharField(max_length=100)
     curso = models.CharField(max_length=200)
     

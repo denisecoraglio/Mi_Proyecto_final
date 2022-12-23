@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from ejemplo.models import Cursos
-from ejemplo.models import Alumnos
-from ejemplo.models import Tutores
-from ejemplo.forms import Buscar, CursosForm, AlumnosForm, TutoresForm
+from ejemplo.models import Curso
+from ejemplo.models import Alumno
+from ejemplo.models import Tutor
+from ejemplo.forms import Buscar, CursoForm, AlumnoForm, TutorForm
 from django.views import View 
 
 
@@ -10,18 +10,18 @@ from django.views import View
 
 
 def mostrar_cursos(request):
-  lista_cursos = Cursos.objects.all()
+  lista_cursos = Curso.objects.all()
   return render(request, "ejemplo/cursos.html", {"lista_cursos": lista_cursos})
 
 def mostrar_alumnos(request):
-  lista_alumnos = Alumnos.objects.all()
+  lista_alumnos = Alumno.objects.all()
   return render(request, "ejemplo/alumnos.html", {"lista_alumnos": lista_alumnos})
 
 def mostrar_tutores(request):
-  lista_tutores = Tutores.objects.all()
+  lista_tutores = Tutor.objects.all()
   return render(request, "ejemplo/tutores.html", {"lista_tutores": lista_tutores})
 
-class BuscarCursos(View):
+class BuscarCurso(View):
     form_class = Buscar
     template_name = 'ejemplo/buscar.html'
     initial = {"nombre":""}
@@ -32,14 +32,14 @@ class BuscarCursos(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             nombre = form.cleaned_data.get("nombre")
-            lista_cursos = Cursos.objects.filter(nombre__icontains=nombre).all() 
+            lista_cursos = Curso.objects.filter(nombre__icontains=nombre).all() 
             form = self.form_class(initial=self.initial)
             return render(request, self.template_name, {'form':form, "lista_cursos": lista_cursos})
         return render(request, self.template_name, {"form": form})
 
-class AltaCursos(View):
+class AltaCurso(View):
 
-    form_class = CursosForm
+    form_class = CursoForm
     template_name = 'ejemplo/alta_cursos.html'
     initial = {"nombre":"", "duracion":"", "dedicacion":""}
 
@@ -60,7 +60,7 @@ class AltaCursos(View):
 
 class AltaAlumnos(View):
 
-    form_class = AlumnosForm
+    form_class = AlumnoForm
     template_name = 'ejemplo/alta_alumnos.html'
     initial = {"nombre":"", "direccion":"", "numero_pasaporte":""}
 
@@ -81,7 +81,7 @@ class AltaAlumnos(View):
 
 class AltaTutores(View):
 
-    form_class = TutoresForm
+    form_class = TutorForm
     template_name = 'ejemplo/alta_tutores.html'
     initial = {"nombre":"", "curso":""}
 
@@ -100,38 +100,112 @@ class AltaTutores(View):
         
         return render(request, self.template_name, {"form": form})
 
-class ActualizarCursos(View):
-    form_class = CursosForm
+class ActualizarCurso(View):
+    form_class = CursoForm
     template_name = "ejemplo/actualizar_cursos.html"
     initial = {"nombre":"", "duracion":"", "dedicacion":""}
   
   # prestar atención ahora el method get recibe un parametro pk == primaryKey == identificador único
     def get(self, request, pk): 
-        cursos = get_object_or_404(Cursos, pk=pk)
-        form = self.form_class(instance=cursos)
-        return render(request, self.template_name, {"form":form,"cursos": cursos})
+        curso = get_object_or_404(Curso, pk=pk)
+        form = self.form_class(instance=curso)
+        return render(request, self.template_name, {"form":form,"curso": curso})
 
   # prestar atención ahora el method post recibe un parametro pk == primaryKey == identificador único
     def post(self, request, pk): 
-        cursos = get_object_or_404(Cursos, pk=pk)
-        form = self.form_class(request.POST ,instance=cursos)
+        curso = get_object_or_404(Curso, pk=pk)
+        form = self.form_class(request.POST ,instance=curso)
         if form.is_valid():
             form.save()
             msg_exito = f"se actualizó con éxito el curso {form.cleaned_data.get('nombre')}"
             form = self.form_class(initial=self.initial) # borra formulario
             return render(request, self.template_name, {"form":form, 
-                                                      "cursos": cursos,
+                                                      "curso": curso,
                                                       "msg_exito": msg_exito})
       
         return render(request, self.template_name, {"form": form})
 
 
-class BorrarCursos(View):
+class BorrarCurso(View):
     template_name = "ejemplo/cursos.html"
  
   
     def get(self, request, pk): 
-      cursos = get_object_or_404(Cursos, pk=pk)
-      cursos.delete()
-      cursos = Cursos.objects.all()
+      curso = get_object_or_404(Curso, pk=pk)
+      curso.delete()
+      cursos = Curso.objects.all()
       return render(request, self.template_name, {'lista_cursos': cursos})
+
+class ActualizarAlumno(View):
+    form_class = AlumnoForm
+    template_name = "ejemplo/actualizar_alumnos.html"
+    initial = {"nombre":"", "duracion":"", "dedicacion":""}
+  
+  # prestar atención ahora el method get recibe un parametro pk == primaryKey == identificador único
+    def get(self, request, pk): 
+        alumno = get_object_or_404(Alumno, pk=pk)
+        form = self.form_class(instance=alumno)
+        return render(request, self.template_name, {"form":form,"alumno": alumno})
+
+  # prestar atención ahora el method post recibe un parametro pk == primaryKey == identificador único
+    def post(self, request, pk): 
+        alumno = get_object_or_404(Alumno, pk=pk)
+        form = self.form_class(request.POST ,instance=alumno)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"se actualizó con éxito el alumno {form.cleaned_data.get('nombre')}"
+            form = self.form_class(initial=self.initial) 
+            return render(request, self.template_name, {"form":form, 
+                                                      "alumno": alumno,
+                                                      "msg_exito": msg_exito})
+      
+        return render(request, self.template_name, {"form": form})
+
+
+class BorrarAlumno(View):
+    template_name = "ejemplo/alumnos.html"
+ 
+  
+    def get(self, request, pk): 
+      alumno = get_object_or_404(Alumno, pk=pk)
+      alumno.delete()
+      alumno = Alumno.objects.all()
+      return render(request, self.template_name, {'lista_alumnos': alumno})
+
+class ActualizarTutor(View):
+    form_class = TutorForm
+    template_name = "ejemplo/actualizar_tutores.html"
+    initial = {"nombre":"", "curso":""}
+  
+  # prestar atención ahora el method get recibe un parametro pk == primaryKey == identificador único
+    def get(self, request, pk): 
+        tutor = get_object_or_404(Tutor, pk=pk)
+        form = self.form_class(instance=tutor)
+        return render(request, self.template_name, {"form":form,"tutor": tutor})
+
+  # prestar atención ahora el method post recibe un parametro pk == primaryKey == identificador único
+    def post(self, request, pk): 
+        tutor = get_object_or_404(Tutor, pk=pk)
+        form = self.form_class(request.POST ,instance=tutor)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"se actualizó con éxito el tutor {form.cleaned_data.get('nombre')}"
+            form = self.form_class(initial=self.initial) 
+            return render(request, self.template_name, {"form":form, 
+                                                      "tutor": tutor,
+                                                      "msg_exito": msg_exito})
+      
+        return render(request, self.template_name, {"form": form})
+
+class BorrarTutor(View):
+    template_name = "ejemplo/tutores.html"
+ 
+  
+    def get(self, request, pk): 
+      tutor = get_object_or_404(Tutor, pk=pk)
+      tutor.delete()
+      tutor = Tutor.objects.all()
+      return render(request, self.template_name, {'lista_tutores': tutor})
+
+
+

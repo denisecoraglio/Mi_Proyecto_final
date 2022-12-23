@@ -1,9 +1,9 @@
 {% extends 'ejemplo/base.html' %}
-{% block titulo%} Modificar un curso {% endblock %}
+{% block titulo%} Modificar un alumno {% endblock %}
 {% block contenido %}
 
 <!-- Prestar aatención a la variable familiar.id -->
-<form action="/cursos/actualizar/{{ curso.id }}" method="post"> 
+<form action="/alumnos/actualizar/{{ alumno.id }}" method="post"> 
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Actualizar">
@@ -11,6 +11,6 @@
 
 <h2 style="color:green">{{msg_exito}}</h2>
 
-<a href="/cursos/">Volver a la lista de cursos</a>
+<a href="/alumnos/">Volver a la lista de alumnos</a>
 
 {% endblock %}
