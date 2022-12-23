@@ -1,16 +1,13 @@
 # Mi_Proyecto_final
-Proyecto final Curso Python
-# Comienzo con la instalacion de Django
 
-# Creo una carpeta con el nombre proyecto
+El proyecto trae informacion de Coderhouse. La página de inicio, va a contar con un menu donde se podran seleccionar los vinculos relacionados a cursos, profesores y alumnos. Para cada vinculo se listaran los registros pudiendo asimismo dar de alta un registro nuevo, actualizar uno existente y/o eliminar. Para el proyecto utilicé 3 clases de modelos: Curso, Alumno y Tutor y las url que detallo a continuacion junto con pasos para la utilizacion del programa
 
-Para correr el programa, realizar los siguientes pasos:
 
 1 Abrir VSCode.
 
 2 Seleccionar o crear una carpeta del programa.
 
-4 En la terminal ejecutar el comando python manage.py runserver para abrir el servidor
+4 Para abrir el servidor, en la terminal ejecutar el comando python manage.py runserver 
 
 5 Se visualiza la siguiente pagina: http://127.0.0.1:8000/
 
@@ -20,23 +17,19 @@ Para correr el programa, realizar los siguientes pasos:
 
 8 Luego se importa dicho archivo con los siguientes comandos: python manage.py shell y import seed_data
 
-
-En la web hay 3 tipos de modelos: Cursos, Alumnos y Tutores:
-
 9 Agregar las url que se indican a continuacion en la barra de direcciones para poder utilizarlas. 
 
-http://127.0.0.1:8000/cursos-datos/: Muestra los Cursos de data ofrecidos por Coderhouse
-http://127.0.0.1:8000/alumnos-coder/: Muestra los alumnos de Coderhouse
-http://127.0.0.1:8000/tutores/ : Muestra los tutores Coderhouse
-http://127.0.0.1:8000/cursos-datos/buscar: Permite buscar por nombre de curso
-http://127.0.0.1:8000/cursos-datos/alta: Permite dar de alta a un curso
-http://127.0.0.1:8000/alumnos-coder/alta: Permite dar de alta a un alumno
-http://127.0.0.1:8000/tutores/: Permite dar de alta a un tutor
-cursos-datos/actualizar/<int:pk>: Permite actualizar el registro 
-cursos-datos/borrar/<int:pk>Permite borrar el registro 
+Tomando como ejemplo el modelo Curso, las url serian las siguientes siendo las mismas para los modelos restantes:
 
 
-Se encuentran funcionando todas excepto la funcion actualizar que no genera el mensaje de exito como corresponde
+http://127.0.0.1:8000/cursos/: Muestra los Cursos ofrecidos por Coderhouse
+http://127.0.0.1:8000/cursos/buscar: Permite buscar un curso determinado
+http://127.0.0.1:8000/cursos/alta: Permite dar de alta a un nuevo curso
+http://127.0.0.1:8000/cursos/actualizar: Permite actualizar un curso
+http://127.0.0.1:8000/cursos/borrar: Permite borrar un curso
+
+
+Todas se encuentran probadas y funcionan correctamente.
 
 
 
