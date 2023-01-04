@@ -1,0 +1,9 @@
+{% extends 'corrucal/base.html' %}
+
+{% block contenido %}
+<ul>
+{% for post in objetc_list %}
+    <li>{{post.titulo}}</li>
+{% endfor %}
+</ul>
+{% endblock %}

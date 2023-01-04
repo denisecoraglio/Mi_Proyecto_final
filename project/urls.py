@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from ejemplo.views import mostrar_cursos, mostrar_alumnos, mostrar_tutores
 from ejemplo.views import BuscarCurso, AltaCurso, AltaAlumnos, AltaTutores, ActualizarCurso, BorrarCurso, ActualizarAlumno, BorrarAlumno, ActualizarTutor, BorrarTutor
+from corrucal.views import index, PostList, PostCrear
 
 
 urlpatterns = [
@@ -34,5 +35,7 @@ urlpatterns = [
     path('tutores/alta', AltaTutores.as_view()),  
     path('tutores/actualizar/<int:pk>', ActualizarTutor.as_view()),
     path('tutores/borrar/<int:pk>', BorrarTutor.as_view()),
-
+    path('corrucal/', index, name= 'corrucal-index'),
+    path('corrucal/listar/', PostList.as_view(), name = 'corrucal-listar'),
+    path('corrucal/crear/', PostCrear.as_view(), name = 'corrucal-crear'),
 ]
