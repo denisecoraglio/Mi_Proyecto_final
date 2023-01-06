@@ -4,6 +4,7 @@ from ejemplo.models import Alumno
 from ejemplo.models import Tutor
 from ejemplo.forms import Buscar, CursoForm, AlumnoForm, TutorForm
 from django.views import View 
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 
 
 
@@ -207,5 +208,24 @@ class BorrarTutor(View):
       tutor = Tutor.objects.all()
       return render(request, self.template_name, {'lista_tutores': tutor})
 
+class CursoList(ListView):
+  model = Curso
 
+class CursoCrear(CreateView):
+  model = Curso
+  success_url = "/panel-curso"
+  fields = ["nombre", "duracion", "dedicacion"]
+
+class CursoBorrar(DeleteView):
+  model = Curso
+  success_url = "/panel-curso"
+
+class CursoActualizar(UpdateView):
+  model = Curso
+  success_url = "/success_update_message"
+  fields = ["nombre", "duracion", "dedicacion"]
+
+class CursoDetalle(DetailView):
+  model = Curso
+  
 

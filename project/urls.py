@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView 
 from ejemplo.views import mostrar_cursos, mostrar_alumnos, mostrar_tutores
-from ejemplo.views import BuscarCurso, AltaCurso, AltaAlumnos, AltaTutores, ActualizarCurso, BorrarCurso, ActualizarAlumno, BorrarAlumno, ActualizarTutor, BorrarTutor
+from ejemplo.views import *
 from corrucal.views import index, PostList, PostCrear
 
 
@@ -35,7 +36,15 @@ urlpatterns = [
     path('tutores/alta', AltaTutores.as_view()),  
     path('tutores/actualizar/<int:pk>', ActualizarTutor.as_view()),
     path('tutores/borrar/<int:pk>', BorrarTutor.as_view()),
+    path('panel-curso/', CursoList.as_view()),
+    path('panel-curso/crear', CursoCrear.as_view()),
+    path('panel-curso/<int:pk>/borrar', CursoBorrar.as_view()),
+    path('panel-curso/<int:pk>/actualizar', CursoActualizar.as_view()),
+    path('panel-curso/<int:pk>/detalle', CursoDetalle.as_view()),
+    path('success_update_message/', TemplateView.as_view(template_name="ejemplo/success_update_message.html")),
     path('corrucal/', index, name= 'corrucal-index'),
     path('corrucal/listar/', PostList.as_view(), name = 'corrucal-listar'),
     path('corrucal/crear/', PostCrear.as_view(), name = 'corrucal-crear'),
+    
+
 ]
