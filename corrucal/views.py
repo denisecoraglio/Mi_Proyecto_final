@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from corrucal.models import Post
 from corrucal.forms import UsuarioForm
+from corrucal.models import Avatar
 
 
 @login_required
@@ -45,6 +46,12 @@ class UserLogin(LoginView):
 
 class UserLogout(LogoutView):
     next_page = reverse_lazy('corrucal-listar')
+
+class AvatarActualizar(UpdateView):
+    model = Avatar
+    fields = ['imagen']
+    success_url = reverse_lazy("corrucal-listar")
+
 
 
     

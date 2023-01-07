@@ -13,12 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView 
 from ejemplo.views import mostrar_cursos, mostrar_alumnos, mostrar_tutores
 from ejemplo.views import *
-from corrucal.views import index, PostList, PostCrear, PostDetalle, PostBorrar, PostActualizar, UserSignUp, UserLogin, UserLogout
+from corrucal.views import (index, PostList,
+                             PostCrear, PostDetalle, PostBorrar, PostActualizar, UserSignUp, UserLogin,
+                             UserLogout, AvatarActualizar)
 from django.contrib.admin.views.decorators import staff_member_required
 
 urlpatterns = [
@@ -51,4 +55,11 @@ urlpatterns = [
     path('corrucal/signup/', UserSignUp.as_view(), name ="corrucal-signup"),
     path('corrucal/login/', UserLogin.as_view(), name ="corrucal-login"),
     path('corrucal/logout/', UserLogout.as_view(), name="corrucal-logout"),
+    path('corrucal/avatars/<int:pk>/actualizar/', AvatarActualizar.as_view(), name="corrucal-avatars-actualizar"),
+
+
 ]
+
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

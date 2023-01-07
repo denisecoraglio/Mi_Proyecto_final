@@ -16,7 +16,14 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'corrucal-index' %}">Start Bootstrap</a>
+                <a class="navbar-brand" href="{% url 'corrucal-index' %}">
+                    <img src="{{user.avatar.imagen.url}}" height="64">   
+                    Start Bootstrap
+                </a>
+                {%if user.is_authenticated  and  user.avatar.imagen %}
+                
+                  Hola, {{user.first_name}} |
+                {% endif %} 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -27,6 +34,7 @@
                         
                         <li class="nav-item"><a class="nav-link" href="{% url 'corrucal-signup' %}">Registrarse</a></li>
                         {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'corrucal-listar' %}">Admin Blog</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'corrucal-logout' %}">Salir</a></li>
                         {% else %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'corrucal-login' %}">Ingresar</a></li>

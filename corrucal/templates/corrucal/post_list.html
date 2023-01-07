@@ -2,18 +2,19 @@
 
 {% block contenido %}
 {% if user.is_authenticated %}
-<a href="{% url 'corrucal-crear' %}">Crear Post</a>
+    <a href="{% url 'corrucal-crear' %}">Crear Post</a>
+    <a href="{% url 'corrucal-avatars-actualizar' user.avatar.id %}">Actualizar Avatar</a>           
 {% endif %}
 <ul>
 {% for post in object_list %}
-        <li> 
-            {{post.id}} - - {{post.publicado_el}} - - {{post.titulo}}
-            {% if user.is_authenticated %}
+    <li>
+        {{post.publicado_el}} - - {{post.titulo}} 
+        {% if user.is_superuser %}
             <a href="{% url 'corrucal-borrar' post.id %}">Borrar</a>
             <a href="{% url 'corrucal-actualizar' post.id %}">Actualizar</a>
-            {% endif %}
-            <a href="{% url 'corrucal-detalle' post.id %}">Ver</a>
-        </li>
+        {% endif %}
+        <a href="{% url 'corrucal-detalle' post.id %}">Ver</a>
+    </li>
 {% endfor %}
 </ul>
 {% endblock %}
