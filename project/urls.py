@@ -18,8 +18,8 @@ from django.urls import path
 from django.views.generic import TemplateView 
 from ejemplo.views import mostrar_cursos, mostrar_alumnos, mostrar_tutores
 from ejemplo.views import *
-from corrucal.views import index, PostList, PostCrear
-
+from corrucal.views import index, PostList, PostCrear, PostDetalle, PostBorrar, PostActualizar, UserSignUp, UserLogin, UserLogout
+from django.contrib.admin.views.decorators import staff_member_required
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -44,7 +44,11 @@ urlpatterns = [
     path('success_update_message/', TemplateView.as_view(template_name="ejemplo/success_update_message.html")),
     path('corrucal/', index, name= 'corrucal-index'),
     path('corrucal/listar/', PostList.as_view(), name = 'corrucal-listar'),
-    path('corrucal/crear/', PostCrear.as_view(), name = 'corrucal-crear'),
-    
-
+    path('corrucal/crear/', staff_member_required(PostCrear.as_view()), name = 'corrucal-crear'),
+    path('corrucal/<int:pk>/borrar/', staff_member_required(PostBorrar.as_view()), name = 'corrucal-borrar'),
+    path('corrucal/<int:pk>/actualizar/', staff_member_required(PostActualizar.as_view()), name = 'corrucal-actualizar'),
+    path('corrucal/<int:pk>/detalle/', PostDetalle.as_view(), name = 'corrucal-detalle'),
+    path('corrucal/signup/', UserSignUp.as_view(), name ="corrucal-signup"),
+    path('corrucal/login/', UserLogin.as_view(), name ="corrucal-login"),
+    path('corrucal/logout/', UserLogout.as_view(), name="corrucal-logout"),
 ]
