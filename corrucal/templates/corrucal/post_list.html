@@ -3,7 +3,11 @@
 {% block contenido %}
 {% if user.is_authenticated %}
     <a href="{% url 'corrucal-crear' %}">Crear Post</a>
-    <a href="{% url 'corrucal-avatars-actualizar' user.avatar.id %}">Actualizar Avatar</a>           
+    {% if user.avatar.imagen %}
+        <a href="{% url 'corrucal-avatars-actualizar' user.avatar.id %}">Actualizar Avatar</a>
+    {% endif %}
+    <a href="{% url 'corrucal-users-actualizar' user.id %}">Actualizar Profile</a>
+    <a href="{% url 'corrucal-mensajes-listar' %}">Mensajes</a>
 {% endif %}
 <ul>
 {% for post in object_list %}
