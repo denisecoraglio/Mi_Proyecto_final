@@ -22,7 +22,7 @@ from ejemplo.views import mostrar_cursos, mostrar_alumnos, mostrar_tutores
 from ejemplo.views import *
 from corrucal.views import (index, PostList,
                              PostCrear, PostDetalle, PostBorrar, PostActualizar, UserSignUp, UserLogin,
-                             UserLogout, AvatarActualizar, UserActualizar, MensajeCrear, MensajeListar, MensajeDetalle)
+                             UserLogout, AvatarActualizar, UserActualizar, MensajeCrear, MensajeListar, MensajeDetalle, about)
 from django.contrib.admin.views.decorators import staff_member_required
 
 urlpatterns = [
@@ -47,6 +47,7 @@ urlpatterns = [
     path('panel-curso/<int:pk>/detalle', CursoDetalle.as_view()),
     path('success_update_message/', TemplateView.as_view(template_name="ejemplo/success_update_message.html")),
     path('corrucal/', index, name= 'corrucal-index'),
+    path('corrucal/about', about, name= 'corrucal-about'),
     path('corrucal/listar/', PostList.as_view(), name = 'corrucal-listar'),
     path('corrucal/crear/', staff_member_required(PostCrear.as_view()), name = 'corrucal-crear'),
     path('corrucal/<int:pk>/borrar/', staff_member_required(PostBorrar.as_view()), name = 'corrucal-borrar'),

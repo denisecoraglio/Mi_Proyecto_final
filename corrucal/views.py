@@ -16,7 +16,7 @@ def index(request):
     return render(request, "corrucal/index.html", {"posts": posts})
 
 
-class PostList(ListView):
+class PostList(LoginRequiredMixin, ListView):
     model = Post
     
 class PostCrear(LoginRequiredMixin, CreateView):
@@ -73,6 +73,9 @@ class MensajeCrear(CreateView):
 class MensajeBorrar(LoginRequiredMixin, DeleteView):
     model = Mensaje
     success_url = reverse_lazy("corrucal-mensajes-listar")
+
+def about(request):
+    return render(request, "corrucal/about.html")
 
 
 
