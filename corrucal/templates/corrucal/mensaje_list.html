@@ -1,4 +1,4 @@
-{% extends 'ejemplo_dos/base.html' %}
+{% extends 'corrucal/base.html' %}
 
 {% block contenido %}
 <ul>
@@ -6,6 +6,7 @@
     <li>
         {{mensaje.enviado_el}} - - {{mensaje.email}} -- {{mensaje.nombre}} 
         <a href="{% url 'corrucal-mensajes-detalle' mensaje.id %}">Ver</a>
+        <a href="{% url 'corrucal-mensajes-borrar' mensaje.id %}">Borrar</a>
     </li>
 {% endfor %}
 </ul>

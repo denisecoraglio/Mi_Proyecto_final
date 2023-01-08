@@ -1,6 +1,6 @@
 # Mi_Proyecto_final
 
-El proyecto trae informacion de Coderhouse. La página de inicio, va a contar con un menu donde se podran seleccionar los vinculos relacionados a cursos, profesores y alumnos. Para cada vinculo se listaran los registros pudiendo asimismo dar de alta un registro nuevo, actualizar uno existente y/o eliminar. Para el proyecto utilicé 3 clases de modelos: Curso, Alumno y Tutor y las url que detallo a continuacion junto con pasos para la utilizacion del programa
+El proyecto final es el blog de Corrucal, empresa dedicada a la fabricacion y venta de articulos de carton corrugado. La página se admministra desde el vinculo Admin blog. Se podra visualizar el listado de los productos ofrecidos, como asi tambien efectuar un registro nuevo, actualizar uno existente y/o eliminar. La aplicacion tambien permite registrar usuarios nuevos, actualizar perfiles, ver y crear mensajes. Detallo a continuacion los pasos para la utilizaiocn del programa
 
 
 1 Abrir VSCode.
@@ -19,17 +19,14 @@ El proyecto trae informacion de Coderhouse. La página de inicio, va a contar co
 
 9 Agregar las url que se indican a continuacion en la barra de direcciones para poder utilizarlas. 
 
-Tomando como ejemplo el modelo Curso, las url serian las siguientes siendo las mismas para los modelos restantes:
 
 
-http://127.0.0.1:8000/cursos/: Muestra los Cursos ofrecidos por Coderhouse
-http://127.0.0.1:8000/cursos/buscar: Permite buscar un curso determinado
-http://127.0.0.1:8000/cursos/alta: Permite dar de alta a un nuevo curso
-http://127.0.0.1:8000/cursos/actualizar: Permite actualizar un curso
-http://127.0.0.1:8000/cursos/borrar: Permite borrar un curso
+
+http://127.0.0.1:8000/corrucal/: Muestra el blog de inicio de la empresa
 
 
-Todas se encuentran probadas y funcionan correctamente.
+
+El blog se encuentra funcioncionando.
 
 
 

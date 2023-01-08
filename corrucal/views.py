@@ -12,7 +12,7 @@ from django.contrib.auth.admin import User
 
 @login_required
 def index(request):
-    posts = Post.objects.order_by('publicado_el').all()
+    posts = Post.objects.order_by('-publicado_el').all()
     return render(request, "corrucal/index.html", {"posts": posts})
 
 
