@@ -26,8 +26,10 @@ http://127.0.0.1:8000/corrucal/: Muestra el blog de inicio de la empresa
 
 
 
-El blog se encuentra funcionando correctamente
+El blog se encuentra funcionando correctamente. Se adjunta link de video
 
+
+https://youtu.be/RH-8g7dFbmw
 Muchas gracias
 
 
